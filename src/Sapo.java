@@ -20,4 +20,26 @@ public class Sapo {
     public void desenhar(Tela t) {
         t.circulo(this.x, this.y, this.raio, this.cor);
     }
+
+    public void mover(String tecla){
+        switch(tecla){
+            case "w":
+                y -= 20;
+                break;
+            case "a":
+                x -= 40;
+                break;
+            case "d":
+                x += 40;
+                break;
+            case "s":
+                y += 20;
+                break;
+            case "p":
+
+                break;
+            default:
+                break;
+        }
+    }
 }

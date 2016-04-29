@@ -62,9 +62,7 @@ public class Jogo {
     }
 	
 	public void tecla(String tecla){
-//        if(tecla.equals("up")){
-//            sapo.mover(tecla);
-//        }
+        sapo.mover(tecla);
     }
 	
     public static void main(String[] args) {
