@@ -35,9 +35,6 @@ public class Sapo {
             case "s":
                 y += 20;
                 break;
-            case "p":
-
-                break;
             default:
                 break;
         }

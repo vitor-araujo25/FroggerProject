@@ -7,6 +7,7 @@ public class Jogo {
     Carro[] carros;
     static int score = 0;
     static int vidas = 3;
+    static boolean pause = false;
     /*
         carros 0 e 1: larg = 100, v = 5s, lin = 1
         carros 2: larg = 150, v = 2s, lin = 2
@@ -45,9 +46,12 @@ public class Jogo {
 	}
 	
 	public void tique(HashSet<String> teclas, double dt){
-        for(Carro i: carros){
-            i.mover(dt,getLargura());
+        if(!pause){
+            for(Carro i: carros){
+                i.mover(dt,getLargura());
+            }
         }
+
     }
 	
 	public void desenhar(Tela tela){
@@ -62,7 +66,13 @@ public class Jogo {
     }
 	
 	public void tecla(String tecla){
-        sapo.mover(tecla);
+        if(tecla.equals("p")){
+           pause = !pause;
+        }
+        if(!pause){
+            sapo.mover(tecla);
+        }
+
     }
 	
     public static void main(String[] args) {
