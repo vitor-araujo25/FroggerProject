@@ -5,6 +5,8 @@ public class Jogo {
     static Cor verde = new Cor("verde");
     Sapo sapo;
     Carro[] carros;
+    static int score = 0;
+    static int vidas = 3;
     /*
         carros 0 e 1: larg = 100, v = 5s, lin = 1
         carros 2: larg = 150, v = 2s, lin = 2
@@ -14,7 +16,7 @@ public class Jogo {
 
 
     public Jogo(){
-        sapo = new Sapo(400.0,550.0,0.0,0.0,verde);
+        sapo = new Sapo(400.0,550.0,0.6,1.0,verde);
         carros = new Carro[9];
         carros[0] = new Carro(0.0,100.0,100,5.0);
         carros[1] = new Carro(200.0,100.0,100,5.0);
@@ -25,6 +27,7 @@ public class Jogo {
         carros[6] = new Carro(0.0,400.0,60,6.0);
         carros[7] = new Carro(160.0,400.0,60,6.0);
         carros[8] = new Carro(320.0,400.0,60,6.0);
+
     }
 
 
@@ -42,24 +45,27 @@ public class Jogo {
 	}
 	
 	public void tique(HashSet<String> teclas, double dt){
-        for(int i = 0; i < this.carros.length; i++){
-            carros[i].x += getLargura()*(dt/carros[i].vx);
-            if(carros[i].x > getLargura()){
-                carros[i].x = (-1)*(double)carros[i].larg;
-            }
+        for(Carro i: carros){
+            i.mover(dt,getLargura());
         }
     }
 	
-	public void desenhar(Tela tela) {
+	public void desenhar(Tela tela){
         tela.retangulo(0,500,this.getLargura(),100,new Cor(244,164,96));
         tela.retangulo(0,0,this.getLargura(),100,new Cor(244,164,96));
+        tela.texto(Integer.toString(vidas),700,575,50,new Cor("azul"));
+        tela.texto(Integer.toString(score),60,575,50,new Cor("azul"));
         sapo.desenhar(tela);
         for(int i = 0; i < this.carros.length; i++){
             carros[i].desenhar(tela);
         }
     }
 	
-	public void tecla(String tecla) {}
+	public void tecla(String tecla){
+//        if(tecla.equals("up")){
+//            sapo.mover(tecla);
+//        }
+    }
 	
     public static void main(String[] args) {
 

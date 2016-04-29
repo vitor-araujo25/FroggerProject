@@ -18,6 +18,14 @@ public class Carro {
     }
 
     public void desenhar(Tela t) {
+
         t.retangulo(x, y, larg, alt, cor);
+    }
+
+    public void mover(double dt, int largTela){
+        x += largTela*(dt/vx);
+        if(x > largTela){
+            x = (-1)*(double)larg;
+        }
     }
 }
