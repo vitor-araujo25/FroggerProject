@@ -63,9 +63,11 @@ public class Motor
             public void keyReleased(KeyEvent evt) {
                 keySet.remove(keyString(evt));
             }
+            //tirei a chama de tecla do motor para que uma mesma tecla não
+            //acabe sendo chamada duas vezes, aqui e no "for" dentro de tique
             @Override
             public void keyTyped(KeyEvent evt) {
-                jogo.tecla(keyString(evt));
+                //jogo.tecla(keyString(evt));
             }
         });
         canvas.createBufferStrategy(2);
@@ -77,7 +79,7 @@ public class Motor
     private void mainLoop() {
 		//alterei o tempo entre tiques para melhorar a precisão das teclas
         //pois o hashset estava armazenando teclas demais
-        Timer t = new Timer(75, new ActionListener() {
+        Timer t = new Timer(100, new ActionListener() {
 			public long t0;
 			public void actionPerformed(ActionEvent evt) {
 				long t1 = System.currentTimeMillis();
