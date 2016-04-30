@@ -8,6 +8,9 @@ public class Jogo {
     static int score = 0;
     static int vidas = 3;
     static boolean pause = false;
+
+    //para ter como passar dt para dentro de tecla sem mexer na assinatura dela
+    double dt;
     /*
         carros 0 e 1: larg = 100, v = 5s, lin = 1
         carros 2: larg = 150, v = 2s, lin = 2
@@ -17,7 +20,7 @@ public class Jogo {
 
 
     public Jogo(){
-        sapo = new Sapo(400.0,550.0,0.6,1.0,verde);
+        sapo = new Sapo(400.0,550.0,1.5,2.0,verde);
         carros = new Carro[9];
         carros[0] = new Carro(0.0,100.0,100,5.0);
         carros[1] = new Carro(200.0,100.0,100,5.0);
@@ -30,8 +33,6 @@ public class Jogo {
         carros[8] = new Carro(320.0,400.0,60,6.0);
 
     }
-
-
 
     public String getTitulo() {
 	    return "Frogger";
@@ -46,17 +47,24 @@ public class Jogo {
 	}
 	
 	public void tique(HashSet<String> teclas, double dt){
+        this.dt = dt;
+        if(teclas.contains("p")){
+            pause = !pause;
+        }
         if(!pause){
             for(Carro i: carros){
                 i.mover(dt,getLargura());
+            }
+            for(String i: teclas){
+                tecla(i);
             }
         }
 
     }
 	
 	public void desenhar(Tela tela){
-        tela.retangulo(0,500,this.getLargura(),100,new Cor(244,164,96));
-        tela.retangulo(0,0,this.getLargura(),100,new Cor(244,164,96));
+        tela.retangulo(0,500,getLargura(),100,new Cor(244,164,96));
+        tela.retangulo(0,0,getLargura(),100,new Cor(244,164,96));
         tela.texto(Integer.toString(vidas),700,575,50,new Cor("azul"));
         tela.texto(Integer.toString(score),60,575,50,new Cor("azul"));
         sapo.desenhar(tela);
@@ -66,13 +74,8 @@ public class Jogo {
     }
 	
 	public void tecla(String tecla){
-        if(tecla.equals("p")){
-           pause = !pause;
-        }
-        if(!pause){
-            sapo.mover(tecla);
-        }
-
+        System.out.println(tecla);
+        sapo.mover(tecla, getLargura(), dt);
     }
 	
     public static void main(String[] args) {

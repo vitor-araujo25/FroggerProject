@@ -18,7 +18,6 @@ public class Carro {
     }
 
     public void desenhar(Tela t) {
-
         t.retangulo(x, y, larg, alt, cor);
     }
 

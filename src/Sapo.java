@@ -9,31 +9,35 @@ public class Sapo {
     Cor cor;
     int raio = 45;
 
-    public Sapo(double _x, double _y, double _vx, double _vy, Cor _cor) {
-        x = _x;
-        y = _y;
-        vx = _vx;
-        vy = _vy;
-        cor = _cor;
+    public Sapo(double x, double y, double vx, double vy, Cor cor) {
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
+        this.cor = cor;
     }
 
     public void desenhar(Tela t) {
         t.circulo(this.x, this.y, this.raio, this.cor);
     }
 
-    public void mover(String tecla){
+    public void mover(String tecla, int largTela, double dt){
         switch(tecla){
+            case "up":
             case "w":
-                y -= 20;
+                y -= largTela*(dt/vy);
                 break;
+            case "left":
             case "a":
-                x -= 40;
+                x -= largTela*(dt/vx);
                 break;
+            case "right":
             case "d":
-                x += 40;
+                x += largTela*(dt/vx);
                 break;
+            case "down":
             case "s":
-                y += 20;
+                y += largTela*(dt/vy);
                 break;
             default:
                 break;
