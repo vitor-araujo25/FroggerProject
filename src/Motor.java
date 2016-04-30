@@ -77,7 +77,7 @@ public class Motor
     private void mainLoop() {
 		//alterei o tempo entre tiques para melhorar a precisão das teclas
         //pois o hashset estava armazenando teclas demais
-        Timer t = new Timer(50, new ActionListener() {
+        Timer t = new Timer(75, new ActionListener() {
 			public long t0;
 			public void actionPerformed(ActionEvent evt) {
 				long t1 = System.currentTimeMillis();

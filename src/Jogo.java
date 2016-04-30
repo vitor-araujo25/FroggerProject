@@ -7,6 +7,7 @@ public class Jogo {
     Carro[] carros;
     static int score = 0;
     static int vidas = 3;
+    //pressionar p para pausar o jogo
     static boolean pause = false;
 
     //para ter como passar dt para dentro de tecla sem mexer na assinatura dela
