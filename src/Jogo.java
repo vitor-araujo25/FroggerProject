@@ -21,7 +21,7 @@ public class Jogo {
 
 
     public Jogo(){
-        sapo = new Sapo(400.0,550.0,1.5,2.0,verde);
+        sapo = new Sapo(400.0,550.0,2.0,2.0,verde);
         carros = new Carro[9];
         carros[0] = new Carro(0.0,100.0,100,5.0);
         carros[1] = new Carro(200.0,100.0,100,5.0);
@@ -71,8 +71,8 @@ public class Jogo {
 	public void desenhar(Tela tela){
         tela.retangulo(0,500,getLargura(),100,new Cor(244,164,96));
         tela.retangulo(0,0,getLargura(),100,new Cor(244,164,96));
-        tela.texto(Integer.toString(vidas),700,575,50,new Cor("azul"));
-        tela.texto(Integer.toString(score),60,575,50,new Cor("azul"));
+        tela.texto(Integer.toString(vidas),700,65,50,new Cor("azul"));
+        tela.texto(Integer.toString(score),60,65,50,new Cor("azul"));
         sapo.desenhar(tela);
         for(int i = 0; i < this.carros.length; i++){
             carros[i].desenhar(tela);

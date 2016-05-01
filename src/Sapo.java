@@ -32,17 +32,23 @@ public class Sapo {
                 case "left":
                 case "a":
                 case "esquerda":
-                    x -= largTela * (dt / vx);
+                    if(x > 60.0){
+                        x -= largTela * (dt / vx);
+                    }
                     break;
                 case "right":
                 case "d":
                 case "direita":
-                    x += largTela * (dt / vx);
+                    if(x < 740.0){
+                        x += largTela * (dt / vx);
+                    }
                     break;
                 case "down":
                 case "s":
                 case "abaixo":
-                    y += largTela * (dt / vy);
+                    if(y < 540.0){
+                        y += largTela * (dt / vy);
+                    }
                     break;
                 default:
                     break;
