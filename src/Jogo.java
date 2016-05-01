@@ -59,6 +59,11 @@ public class Jogo {
             for(String i: teclas){
                 tecla(i);
             }
+            if(sapo.y <= 50){
+                sapo.x = 400.0;
+                sapo.y = 550.0;
+                score += 100;
+            }
         }
 
     }
