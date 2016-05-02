@@ -9,9 +9,6 @@ public class Jogo {
     static int vidas = 3;
     //pressionar p para pausar o jogo
     static boolean pause = false;
-
-    //para ter como passar dt para dentro de tecla sem mexer na assinatura dela
-    double dt;
     /*
         carros 0 e 1: larg = 100, v = 5s, lin = 1
         carros 2: larg = 150, v = 2s, lin = 2
@@ -48,7 +45,6 @@ public class Jogo {
 	}
 	
 	public void tique(HashSet<String> teclas, double dt){
-        this.dt = dt;
         if(teclas.contains("p")){
             pause = !pause;
         }
@@ -56,9 +52,7 @@ public class Jogo {
             for(Carro i: carros){
                 i.mover(dt,getLargura());
             }
-            for(String i: teclas){
-                tecla(i);
-            }
+            tecla(teclas, dt);
             if(sapo.y <= 50){
                 sapo.x = 400.0;
                 sapo.y = 550.0;
@@ -79,9 +73,11 @@ public class Jogo {
         }
     }
 	
-	public void tecla(String tecla){
-        System.out.println(tecla);
-        sapo.mover(tecla, getLargura(), dt);
+	public void tecla(HashSet<String> teclas, double dt){
+        for(String i: teclas){
+            System.out.println(i);
+        }
+        sapo.mover(teclas, getLargura(), dt);
     }
 	
     public static void main(String[] args) {
