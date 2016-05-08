@@ -16,6 +16,7 @@ public class Carro {
         this.y = y;
         this.larg = larg;
         this.vx = vx;
+        hb = new Hitbox(x,y,x+larg,y+alt);
     }
 
     public void desenhar(Tela t) {

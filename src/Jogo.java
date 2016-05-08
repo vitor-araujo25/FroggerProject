@@ -74,9 +74,9 @@ public class Jogo {
     }
 	
 	public void tecla(HashSet<String> teclas, double dt){
-        for(String i: teclas){
-            System.out.println(i);
-        }
+//        for(String i: teclas){
+//            System.out.println(i);
+//        }
         sapo.mover(teclas, getLargura(), dt);
     }
 	

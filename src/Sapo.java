@@ -18,6 +18,7 @@ public class Sapo {
         this.vx = vx;
         this.vy = vy;
         this.cor = cor;
+//        hb = new Hitbox();
     }
 
     public void desenhar(Tela t) {
@@ -28,18 +29,23 @@ public class Sapo {
         if(teclas.contains("up") || teclas.contains("w") || teclas.contains("acima")){
             y -= largTela * (dt / vy);
         }else if(teclas.contains("left") || teclas.contains("a") || teclas.contains("esquerda")){
-            if(x > 60.0){
+            if(x > 0.0){
                 x -= largTela * (dt / vx);
+            }else{
+                x = largTela + raio;
             }
         }else if(teclas.contains("right") || teclas.contains("d") || teclas.contains("direita")){
-            if(x < 740.0){
+            if(x < largTela){
                 x += largTela * (dt / vx);
+            }else{
+                x = -raio;
             }
         }else if(teclas.contains("down") || teclas.contains("s") || teclas.contains("abaixo")){
-            if(y < 540.0){
+            if(y <= 550.0){
                 y += largTela * (dt / vy);
             }
         }
+        System.out.println("X: "+x+", Y: "+y);
 //            switch (tecla) {
 //                case "up":
 //                case "w":
