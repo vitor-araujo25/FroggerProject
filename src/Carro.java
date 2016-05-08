@@ -9,6 +9,7 @@ public class Carro {
     Cor cor = new Cor(Math.random(), Math.random(), Math.random());
     int larg;
     static int alt = 100;
+    Hitbox hb;
 
     public Carro(double x, double y, int larg, double vx) {
         this.x = x;

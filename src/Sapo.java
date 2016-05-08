@@ -8,6 +8,7 @@ public class Sapo {
     double vy;
     Cor cor;
     int raio = 45;
+    Hitbox hb;
 
     public Sapo(double x, double y, double vx, double vy, Cor cor) {
         this.x = x;
