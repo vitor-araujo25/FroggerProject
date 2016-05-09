@@ -68,9 +68,12 @@ public class Jogo {
         tela.texto(Integer.toString(vidas),700,65,50,new Cor("azul"));
         tela.texto(Integer.toString(score),60,65,50,new Cor("azul"));
         sapo.desenhar(tela);
-        for(int i = 0; i < this.carros.length; i++){
-            carros[i].desenhar(tela);
+        for(Carro car: carros){
+            car.desenhar(tela);
+            tela.retangulo(car.x,car.y,car.larg,car.alt,new Cor("branco")); //teste hitbox
         }
+        tela.retangulo(sapo.hb.x0,sapo.hb.y0,(int)(sapo.hb.x1-sapo.hb.x0),
+                (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
     }
 	
 	public void tecla(HashSet<String> teclas, double dt){

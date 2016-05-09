@@ -28,5 +28,6 @@ public class Carro {
         if(x > largTela){
             x = (-1)*(double)larg;
         }
+        hb.mover(x,y,x+larg,y+alt);
     }
 }

@@ -9,8 +9,9 @@ public class Sapo {
     double vx;
     double vy;
     Cor cor;
-    int raio = 45;
+    static int raio = 45;
     Hitbox hb;
+    double offset = ((double)raio*Math.sqrt(2))/2.0;
 
     public Sapo(double x, double y, double vx, double vy, Cor cor) {
         this.x = x;
@@ -18,11 +19,11 @@ public class Sapo {
         this.vx = vx;
         this.vy = vy;
         this.cor = cor;
-//        hb = new Hitbox();
+        hb = new Hitbox(x-offset,y-offset,x+offset,y+offset);
     }
 
     public void desenhar(Tela t) {
-        t.circulo(this.x, this.y, this.raio, this.cor);
+        t.circulo(this.x, this.y, raio, this.cor);
     }
 
     public void mover(HashSet<String> teclas, int largTela, double dt) {
@@ -46,6 +47,7 @@ public class Sapo {
             }
         }
         System.out.println("X: "+x+", Y: "+y);
+        hb.mover(x-offset,y-offset,x+offset,y+offset);
 //            switch (tecla) {
 //                case "up":
 //                case "w":
