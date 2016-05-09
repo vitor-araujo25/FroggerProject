@@ -6,20 +6,18 @@ import java.util.HashSet;
 public class Sapo {
     double x;
     double y;
-    double vx;
-    double vy;
+    double dest_x;
+    double dest_y;
     Cor cor;
     static int raio = 45;
     Hitbox hb;
-    double offset = ((double)raio*Math.sqrt(2))/2.0;
+    double offset = (((double)raio*Math.sqrt(2))/2.0);
 
-    public Sapo(double x, double y, double vx, double vy, Cor cor) {
+    public Sapo(double x, double y, Cor cor) {
         this.x = x;
         this.y = y;
-        this.vx = vx;
-        this.vy = vy;
         this.cor = cor;
-        hb = new Hitbox(x-offset,y-offset,x+offset,y+offset);
+        hb = new Hitbox(x-offset-5,y-offset,x+offset+5,y+offset);
     }
 
     public void desenhar(Tela t) {
@@ -28,55 +26,25 @@ public class Sapo {
 
     public void mover(HashSet<String> teclas, int largTela, double dt) {
         if(teclas.contains("up") || teclas.contains("w") || teclas.contains("acima")){
-            y -= largTela * (dt / vy);
+//            y -= 300*dt;
         }else if(teclas.contains("left") || teclas.contains("a") || teclas.contains("esquerda")){
-            if(x > 0.0){
-                x -= largTela * (dt / vx);
-            }else{
-                x = largTela + raio;
-            }
+//            if(x > 0.0){
+//                x -= 300*dt;
+//            }else{
+//                x = largTela + raio;
+//            }
         }else if(teclas.contains("right") || teclas.contains("d") || teclas.contains("direita")){
-            if(x < largTela){
-                x += largTela * (dt / vx);
-            }else{
-                x = -raio;
-            }
+//            if(x < largTela){
+//                x += 300*dt;
+//            }else{
+//                x = -raio;
+//            }
         }else if(teclas.contains("down") || teclas.contains("s") || teclas.contains("abaixo")){
-            if(y <= 550.0){
-                y += largTela * (dt / vy);
-            }
+//            if(y <= 550.0){
+//                y += 300*dt;
+//            }
         }
         System.out.println("X: "+x+", Y: "+y);
-        hb.mover(x-offset,y-offset,x+offset,y+offset);
-//            switch (tecla) {
-//                case "up":
-//                case "w":
-//                case "acima":
-//                    y -= largTela * (dt / vy);
-//                    break;
-//                case "left":
-//                case "a":
-//                case "esquerda":
-//                    if(x > 60.0){
-//                        x -= largTela * (dt / vx);
-//                    }
-//                    break;
-//                case "right":
-//                case "d":
-//                case "direita":
-//                    if(x < 740.0){
-//                        x += largTela * (dt / vx);
-//                    }
-//                    break;
-//                case "down":
-//                case "s":
-//                case "abaixo":
-//                    if(y < 540.0){
-//                        y += largTela * (dt / vy);
-//                    }
-//                    break;
-//                default:
-//                    break;
-//            }
+        hb.mover(x-offset-5,y-offset,x+offset+5,y+offset);
     }
 }
