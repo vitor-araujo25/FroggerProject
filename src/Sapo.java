@@ -24,22 +24,27 @@ public class Sapo {
         t.circulo(this.x, this.y, raio, this.cor);
     }
 
-    public void mover(HashSet<String> teclas, int largTela, double dt) {
+    public void mover(HashSet<String> teclas, int largTela) {
         if(teclas.contains("up") || teclas.contains("w") || teclas.contains("acima")){
 //            y -= 300*dt;
+            dest_y -= 100;
         }else if(teclas.contains("left") || teclas.contains("a") || teclas.contains("esquerda")){
+            dest_x -= 100;
 //            if(x > 0.0){
 //                x -= 300*dt;
 //            }else{
 //                x = largTela + raio;
 //            }
         }else if(teclas.contains("right") || teclas.contains("d") || teclas.contains("direita")){
+            dest_x += 100;
+
 //            if(x < largTela){
 //                x += 300*dt;
 //            }else{
 //                x = -raio;
 //            }
         }else if(teclas.contains("down") || teclas.contains("s") || teclas.contains("abaixo")){
+            dest_y += 100;
 //            if(y <= 550.0){
 //                y += 300*dt;
 //            }

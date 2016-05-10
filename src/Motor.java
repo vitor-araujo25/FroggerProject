@@ -28,7 +28,7 @@ public class Motor
     public Jogo jogo;
     public BufferStrategy strategy;
     public HashSet<String> keySet = new HashSet<String>();
-    
+
     public Motor(Jogo j) {
         jogo = j;
         Canvas canvas = new Canvas();
@@ -62,9 +62,8 @@ public class Motor
             @Override
             public void keyReleased(KeyEvent evt) {
                 keySet.remove(keyString(evt));
+                jogo.tecla(keySet);
             }
-            //tirei a chama de tecla do motor para que uma mesma tecla não
-            //acabe sendo chamada duas vezes, aqui e no "for" dentro de tique
             @Override
             public void keyTyped(KeyEvent evt) {
                 //jogo.tecla(keyString(evt));
@@ -77,9 +76,7 @@ public class Motor
     }
     
     private void mainLoop() {
-		//alterei o tempo entre tiques para melhorar a precisão das teclas
-        //pois o hashset estava armazenando teclas demais
-        Timer t = new Timer(5, new ActionListener() {
+		Timer t = new Timer(5, new ActionListener() {
 			public long t0;
 			public void actionPerformed(ActionEvent evt) {
 				long t1 = System.currentTimeMillis();
@@ -87,7 +84,7 @@ public class Motor
 					t0 = t1;
 				if(t1 > t0) {
 					double dt = (t1 - t0) / 1000.0;
-					t0 = t1;
+                    t0 = t1;
 					jogo.tique(keySet, dt);
 					Graphics2D g = (Graphics2D)strategy.getDrawGraphics();
 					g.setColor(Color.black);
