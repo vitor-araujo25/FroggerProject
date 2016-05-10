@@ -49,7 +49,7 @@ public class Sapo {
 //                y += 300*dt;
 //            }
         }
-        System.out.println("X: "+x+", Y: "+y);
+//        System.out.println("X: "+x+", Y: "+y);
         hb.mover(x-offset-5,y-offset,x+offset+5,y+offset);
     }
 }
