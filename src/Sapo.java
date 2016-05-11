@@ -36,12 +36,12 @@ public class Sapo {
         }else if(tecla.equals("down") || tecla.equals("s") || tecla.equals("abaixo")){
             dest_y += 100;
         }
-        System.out.println("DX: "+dest_x+", DY: "+dest_y);
-        System.out.println("X: "+x+", Y: "+y);
+//        System.out.println("DX: "+dest_x+", DY: "+dest_y);
+//        System.out.println("X: "+x+", Y: "+y);
 
     }
 
-    public void mover(double dt){
+    public void mover(double dt ,int alt, int larg){
         if(x < dest_x){
             x += 300*dt;
             if(x > dest_x){
@@ -62,7 +62,7 @@ public class Sapo {
         }
         if(y > dest_y){
             y -= 300*dt;
-            if(y > dest_y){
+            if(y < dest_y){
                 y = dest_y;
             }
         }

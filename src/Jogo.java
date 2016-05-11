@@ -6,9 +6,10 @@ public class Jogo {
     Sapo sapo;
     Carro[] carros;
     static int score = 0;
-    static int vidas = 3;
+    static int vidas = 5;
     //pressionar p para pausar o jogo
     static boolean pause = false;
+    static boolean gameOver = false;
     /*
         carros 0 e 1: larg = 100, v = 5s, lin = 1 (topo)
         carros 2: larg = 150, v = 2s, lin = 2
@@ -45,14 +46,30 @@ public class Jogo {
 	}
 	
 	public void tique(HashSet<String> teclas, double dt){
-        if(teclas.contains("p")){
-            pause = !pause;
-        }
         if(!pause){
             for(Carro i: carros){
                 i.mover(dt,getLargura());
             }
-            sapo.mover(dt);
+            if(!gameOver){
+                sapo.mover(dt,getAltura(),getLargura());
+                for(Carro i: carros){
+                    if(i.hb.intersecao(sapo.hb) > 0){
+                        sapo.x = 400.0;
+                        sapo.y = 550.0;
+                        sapo.dest_x = sapo.x;
+                        sapo.dest_y = sapo.y;
+                        vidas--;
+                    }
+                }
+                if(vidas == 0){
+                    gameOver = !gameOver;
+                }
+            }else{
+                sapo.x = 400.0;
+                sapo.y = 550.0;
+                sapo.dest_x = sapo.x;
+                sapo.dest_y = sapo.y;
+            }
         }
 
     }
@@ -62,17 +79,30 @@ public class Jogo {
         tela.retangulo(0,0,getLargura(),100,new Cor(244,164,96));
         tela.texto(Integer.toString(vidas),700,65,50,new Cor("azul"));
         tela.texto(Integer.toString(score),60,65,50,new Cor("azul"));
-        sapo.desenhar(tela);
+        if(!gameOver){
+            sapo.desenhar(tela);
+        }
         for(Carro car: carros){
             car.desenhar(tela);
-            tela.retangulo(car.x,car.y,car.larg,Carro.alt,new Cor("branco")); //teste hitbox
+           // tela.retangulo(car.x,car.y,car.larg,Carro.alt,new Cor("branco")); //teste hitbox
         }
-        tela.retangulo(sapo.hb.x0,sapo.hb.y0,(int)(sapo.hb.x1-sapo.hb.x0),
-                (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
+       // tela.retangulo(sapo.hb.x0,sapo.hb.y0,(int)(sapo.hb.x1-sapo.hb.x0),
+       //         (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
+        if(gameOver){
+            tela.texto("GAME OVER",200,300,70,new Cor("branco"));
+        }
     }
 	
 	public void tecla(String tecla){
-        sapo.defDirecao(tecla);
+        if(!pause){
+            sapo.defDirecao(tecla);
+        }
+        if(tecla.equals("p")){
+            pause = !pause;
+        }
+//        if(tecla.equals("space")){
+//            gameOver = !gameOver;
+//        }
     }
 	
     public static void main(String[] args) {
