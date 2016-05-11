@@ -18,38 +18,61 @@ public class Sapo {
         this.y = y;
         this.cor = cor;
         hb = new Hitbox(x-offset-5,y-offset,x+offset+5,y+offset);
+        dest_x = x;
+        dest_y = y;
     }
 
     public void desenhar(Tela t) {
         t.circulo(this.x, this.y, raio, this.cor);
     }
 
-    public void mover(HashSet<String> teclas, int largTela) {
-        if(teclas.contains("up") || teclas.contains("w") || teclas.contains("acima")){
-//            y -= 300*dt;
+    public void defDirecao(String tecla) {
+        if(tecla.equals("up") || tecla.equals("w") || tecla.equals("acima")){
             dest_y -= 100;
-        }else if(teclas.contains("left") || teclas.contains("a") || teclas.contains("esquerda")){
+        }else if(tecla.equals("left") || tecla.equals("a") || tecla.equals("esquerda")){
             dest_x -= 100;
-//            if(x > 0.0){
-//                x -= 300*dt;
-//            }else{
-//                x = largTela + raio;
-//            }
-        }else if(teclas.contains("right") || teclas.contains("d") || teclas.contains("direita")){
+        }else if(tecla.equals("right") || tecla.equals("d") || tecla.equals("direita")){
             dest_x += 100;
-
-//            if(x < largTela){
-//                x += 300*dt;
-//            }else{
-//                x = -raio;
-//            }
-        }else if(teclas.contains("down") || teclas.contains("s") || teclas.contains("abaixo")){
+        }else if(tecla.equals("down") || tecla.equals("s") || tecla.equals("abaixo")){
             dest_y += 100;
-//            if(y <= 550.0){
-//                y += 300*dt;
-//            }
         }
-//        System.out.println("X: "+x+", Y: "+y);
+        System.out.println("DX: "+dest_x+", DY: "+dest_y);
+        System.out.println("X: "+x+", Y: "+y);
+
+    }
+
+    public void mover(double dt){
+        if(x < dest_x){
+            x += 300*dt;
+            if(x > dest_x){
+                x = dest_x;
+            }
+        }
+        if(x > dest_x){
+            x -= 300*dt;
+            if(x < dest_x){
+                x = dest_x;
+            }
+        }
+        if(y < dest_y){
+            y += 300*dt;
+            if(y > dest_y){
+                y = dest_y;
+            }
+        }
+        if(y > dest_y){
+            y -= 300*dt;
+            if(y > dest_y){
+                y = dest_y;
+            }
+        }
+        if(y <= 50.0){
+            x = 400.0;
+            y = 550.0;
+            dest_y = y;
+            dest_x = x;
+            Jogo.score += 100;
+        }
         hb.mover(x-offset-5,y-offset,x+offset+5,y+offset);
     }
 }

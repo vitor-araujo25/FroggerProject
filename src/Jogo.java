@@ -52,11 +52,7 @@ public class Jogo {
             for(Carro i: carros){
                 i.mover(dt,getLargura());
             }
-            if(sapo.y <= 50){
-                sapo.x = 400.0;
-                sapo.y = 550.0;
-                score += 100;
-            }
+            sapo.mover(dt);
         }
 
     }
@@ -75,11 +71,8 @@ public class Jogo {
                 (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
     }
 	
-	public void tecla(HashSet<String> teclas){
-//        for(String i: teclas){
-//            System.out.println(i);
-//        }
-        sapo.mover(teclas, getLargura());
+	public void tecla(String tecla){
+        sapo.defDirecao(tecla);
     }
 	
     public static void main(String[] args) {
