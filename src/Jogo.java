@@ -22,14 +22,14 @@ public class Jogo {
         sapo = new Sapo(400.0,550.0,verde);
         carros = new Carro[9];
         carros[0] = new Carro(0.0,100.0,100,5.0);
-        carros[1] = new Carro(200.0,100.0,100,5.0);
+        carros[1] = new Carro(250.0,100.0,100,5.0);
         carros[2] = new Carro(0.0,200.0,150,2.0);
         carros[3] = new Carro(0.0,300.0,60,8.0);
-        carros[4] = new Carro(160.0,300.0,60,8.0);
-        carros[5] = new Carro(320.0,300.0,60,8.0);
+        carros[4] = new Carro(210.0,300.0,60,8.0);
+        carros[5] = new Carro(420.0,300.0,60,8.0);
         carros[6] = new Carro(0.0,400.0,60,6.0);
-        carros[7] = new Carro(160.0,400.0,60,6.0);
-        carros[8] = new Carro(320.0,400.0,60,6.0);
+        carros[7] = new Carro(210.0,400.0,60,6.0);
+        carros[8] = new Carro(420.0,400.0,60,6.0);
 
     }
 
