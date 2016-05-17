@@ -11,13 +11,13 @@ public class Sapo {
     Cor cor;
     static int raio = 45;
     Hitbox hb;
-    double offset = (((double)raio*Math.sqrt(2))/2.0);
+    double offset = (((double) raio * Math.sqrt(2)) / 2.0);
 
     public Sapo(double x, double y, Cor cor) {
         this.x = x;
         this.y = y;
         this.cor = cor;
-        hb = new Hitbox(x-offset-5,y-offset,x+offset+5,y+offset);
+        hb = new Hitbox(x - offset - 5, y - offset, x + offset + 5, y + offset);
         dest_x = x;
         dest_y = y;
     }
@@ -27,52 +27,62 @@ public class Sapo {
     }
 
     public void defDirecao(String tecla) {
-        if(tecla.equals("up") || tecla.equals("w") || tecla.equals("acima")){
+        if (tecla.equals("up") || tecla.equals("w") || tecla.equals("acima")) {
             dest_y -= 100;
-        }else if(tecla.equals("left") || tecla.equals("a") || tecla.equals("esquerda")){
+        } else if (tecla.equals("left") || tecla.equals("a") || tecla.equals("esquerda")) {
             dest_x -= 100;
-        }else if(tecla.equals("right") || tecla.equals("d") || tecla.equals("direita")){
+        } else if (tecla.equals("right") || tecla.equals("d") || tecla.equals("direita")) {
             dest_x += 100;
-        }else if(tecla.equals("down") || tecla.equals("s") || tecla.equals("abaixo")){
+        } else if (tecla.equals("down") || tecla.equals("s") || tecla.equals("abaixo")) {
             dest_y += 100;
         }
-//        System.out.println("DX: "+dest_x+", DY: "+dest_y);
-//        System.out.println("X: "+x+", Y: "+y);
-
     }
 
-    public void mover(double dt ,int alt, int larg){
-        if(x < dest_x){
-            x += 300*dt;
-            if(x > dest_x){
-                x = dest_x;
+    public void mover(double dt, int largTela, int altTela) {
+        if (dest_y < altTela && dest_y > 0.0) {
+            if (x < dest_x) {
+                x += 300 * dt;
+                if (x > dest_x) {
+                    x = dest_x;
+                }
+            } else if (x > dest_x) {
+                x -= 300 * dt;
+                if (x < dest_x) {
+                    x = dest_x;
+                }
+            } else if (y < dest_y) {
+                y += 300 * dt;
+                if (y > dest_y) {
+                    y = dest_y;
+                }
+            } else if (y > dest_y) {
+                y -= 300 * dt;
+                if (y < dest_y) {
+                    y = dest_y;
+                }
             }
-        }
-        if(x > dest_x){
-            x -= 300*dt;
-            if(x < dest_x){
-                x = dest_x;
+            if (x < 0.0) {
+                x = (double) largTela;
+                dest_x = (double) largTela - 100.0;
             }
-        }
-        if(y < dest_y){
-            y += 300*dt;
-            if(y > dest_y){
-                y = dest_y;
+            if (x > largTela) {
+                x = 0.0;
+                dest_x = 100.0;
             }
+        }else{
+            dest_y = y;
         }
-        if(y > dest_y){
-            y -= 300*dt;
-            if(y < dest_y){
-                y = dest_y;
-            }
-        }
-        if(y <= 50.0){
+        if (y <= 50.0) {
             x = 400.0;
             y = 550.0;
             dest_y = y;
             dest_x = x;
             Jogo.score += 100;
         }
-        hb.mover(x-offset-5,y-offset,x+offset+5,y+offset);
+        hb.mover(x - raio, y - raio, x + raio, y + raio);
     }
 }
+
+
+
+

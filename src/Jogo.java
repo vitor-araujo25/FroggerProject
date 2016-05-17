@@ -51,7 +51,7 @@ public class Jogo {
                 i.mover(dt,getLargura());
             }
             if(!gameOver){
-                sapo.mover(dt,getAltura(),getLargura());
+                sapo.mover(dt,getLargura(),getAltura());
                 for(Carro i: carros){
                     if(i.hb.intersecao(sapo.hb) > 0){
                         sapo.x = 400.0;
@@ -84,10 +84,10 @@ public class Jogo {
         }
         for(Carro car: carros){
             car.desenhar(tela);
-           // tela.retangulo(car.x,car.y,car.larg,Carro.alt,new Cor("branco")); //teste hitbox
+//            tela.retangulo(car.x,car.y,car.larg,Carro.alt,new Cor("branco")); //teste hitbox
         }
-       // tela.retangulo(sapo.hb.x0,sapo.hb.y0,(int)(sapo.hb.x1-sapo.hb.x0),
-       //         (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
+//        tela.retangulo(sapo.hb.x0,sapo.hb.y0,(int)(sapo.hb.x1-sapo.hb.x0),
+//                (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
         if(gameOver){
             tela.texto("GAME OVER",200,300,70,new Cor("branco"));
         }
