@@ -77,7 +77,7 @@ public class Jogo {
 
         for(Carro car: carros) {
             car.desenhar(tela);
-            tela.retangulo(car.x,car.y,car.larg,Carro.alt,new Cor("branco")); //teste hitbox
+        //    tela.retangulo(car.x,car.y,car.larg,Carro.alt,new Cor("branco")); //teste hitbox
         }
         if(pause){
             tela.texto("PAUSE",280,280,70,new Cor("branco"));
@@ -89,8 +89,8 @@ public class Jogo {
             tela.texto("GAME OVER",190,320,70,new Cor("branco"));
             tela.texto("Pressione \"espaço\" para jogar novamente",200,30,20,new Cor("preto"));
         }
-        tela.retangulo(sapo.hb.x0,sapo.hb.y0,(int)(sapo.hb.x1-sapo.hb.x0),
-                (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
+    //    tela.retangulo(sapo.hb.x0,sapo.hb.y0,(int)(sapo.hb.x1-sapo.hb.x0),
+     //           (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
     }
 	
 	public void tecla(String tecla){
