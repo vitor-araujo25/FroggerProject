@@ -100,7 +100,7 @@ public class Jogo {
         if(tecla.equals("p")){
             pause = !pause;
         }
-        System.out.println(tecla);
+       // System.out.println(tecla);
         if(gameOver){
             if(tecla.equals("space") || tecla.equals("espaço")){
                 gameOver = !gameOver;
