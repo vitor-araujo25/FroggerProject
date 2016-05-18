@@ -97,15 +97,16 @@ public class Jogo {
         if(!pause){
             sapo.defDirecao(tecla);
         }
-        if(tecla.equals("p")){
-            pause = !pause;
-        }
        // System.out.println(tecla);
         if(gameOver){
             if(tecla.equals("space") || tecla.equals("espaço")){
                 gameOver = !gameOver;
                 vidas = 5;
                 score = 0;
+            }
+        }else{
+            if(tecla.equals("p")){
+                pause = !pause;
             }
         }
     }
