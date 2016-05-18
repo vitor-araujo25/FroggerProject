@@ -17,7 +17,7 @@ public class Sapo {
         this.x = x;
         this.y = y;
         this.cor = cor;
-        hb = new Hitbox(x - offset - 5, y - offset, x + offset + 5, y + offset);
+        hb = new Hitbox(x-offset-5, y-offset, x+offset+5, y+offset);
         dest_x = x;
         dest_y = y;
     }
@@ -27,15 +27,18 @@ public class Sapo {
     }
 
     public void defDirecao(String tecla) {
-        if (tecla.equals("up") || tecla.equals("w") || tecla.equals("acima")) {
-            dest_y -= 100;
-        } else if (tecla.equals("left") || tecla.equals("a") || tecla.equals("esquerda")) {
-            dest_x -= 100;
-        } else if (tecla.equals("right") || tecla.equals("d") || tecla.equals("direita")) {
-            dest_x += 100;
-        } else if (tecla.equals("down") || tecla.equals("s") || tecla.equals("abaixo")) {
-            dest_y += 100;
+        if(y == dest_y && x == dest_x){
+            if (tecla.equals("up") || tecla.equals("w") || tecla.equals("acima")) {
+                dest_y -= 100;
+            } else if (tecla.equals("left") || tecla.equals("a") || tecla.equals("esquerda")) {
+                dest_x -= 100;
+            } else if (tecla.equals("right") || tecla.equals("d") || tecla.equals("direita")) {
+                dest_x += 100;
+            } else if (tecla.equals("down") || tecla.equals("s") || tecla.equals("abaixo")) {
+                dest_y += 100;
+            }
         }
+
     }
 
     public void mover(double dt, int largTela, int altTela) {
@@ -72,14 +75,14 @@ public class Sapo {
         }else{
             dest_y = y;
         }
-        if (y <= 50.0) {
+        if (y <= 60.0) {
             x = 400.0;
             y = 550.0;
             dest_y = y;
             dest_x = x;
             Jogo.score += 100;
         }
-        hb.mover(x - raio, y - raio, x + raio, y + raio);
+        hb.mover(x-offset-5, y-offset, x+offset+5, y+offset);
     }
 }
 

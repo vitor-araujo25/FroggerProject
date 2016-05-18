@@ -40,6 +40,10 @@ public class Cor
             r = 255;
         } else if(cor.equals("verde")) {
             g = 255;
+        } else if(cor.equals("preto")){
+            r = 0;
+            g = 0;
+            b = 0;
         }
     }
 }

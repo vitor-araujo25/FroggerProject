@@ -7,7 +7,6 @@ public class Jogo {
     Carro[] carros;
     static int score = 0;
     static int vidas = 5;
-    //pressionar p para pausar o jogo
     static boolean pause = false;
     static boolean gameOver = false;
     /*
@@ -45,15 +44,15 @@ public class Jogo {
 	    return 600;
 	}
 	
-	public void tique(HashSet<String> teclas, double dt){
-        if(!pause){
-            for(Carro i: carros){
-                i.mover(dt,getLargura());
+	public void tique(HashSet<String> teclas, double dt) {
+        if (!pause) {
+            for (Carro i : carros) {
+                i.mover(dt, getLargura());
             }
-            if(!gameOver){
-                sapo.mover(dt,getLargura(),getAltura());
-                for(Carro i: carros){
-                    if(i.hb.intersecao(sapo.hb) > 0){
+            if (!gameOver) {
+                sapo.mover(dt, getLargura(), getAltura());
+                for (Carro i : carros) {
+                    if (i.hb.intersecao(sapo.hb) > 0) {
                         sapo.x = 400.0;
                         sapo.y = 550.0;
                         sapo.dest_x = sapo.x;
@@ -61,36 +60,37 @@ public class Jogo {
                         vidas--;
                     }
                 }
-                if(vidas == 0){
+                if (vidas == 0 && !gameOver) {
                     gameOver = !gameOver;
+                    sapo.mover(dt, getLargura(), getAltura());
                 }
-            }else{
-                sapo.x = 400.0;
-                sapo.y = 550.0;
-                sapo.dest_x = sapo.x;
-                sapo.dest_y = sapo.y;
             }
-        }
 
+        }
     }
 	
 	public void desenhar(Tela tela){
         tela.retangulo(0,500,getLargura(),100,new Cor(244,164,96));
         tela.retangulo(0,0,getLargura(),100,new Cor(244,164,96));
-        tela.texto(Integer.toString(vidas),700,65,50,new Cor("azul"));
-        tela.texto(Integer.toString(score),60,65,50,new Cor("azul"));
+        tela.texto("Vidas: "+Integer.toString(vidas),620,65,30,new Cor("azul"));
+        tela.texto("Pts: "+Integer.toString(score),60,65,30,new Cor("azul"));
+
+        for(Carro car: carros) {
+            car.desenhar(tela);
+            tela.retangulo(car.x,car.y,car.larg,Carro.alt,new Cor("branco")); //teste hitbox
+        }
+        if(pause){
+            tela.texto("PAUSE",280,280,70,new Cor("branco"));
+        }
         if(!gameOver){
             sapo.desenhar(tela);
+            tela.texto("Pressione \"P\" para pausar",280,30,20,new Cor("preto"));
+        }else{
+            tela.texto("GAME OVER",190,320,70,new Cor("branco"));
+            tela.texto("Pressione \"espaço\" para jogar novamente",200,30,20,new Cor("preto"));
         }
-        for(Carro car: carros){
-            car.desenhar(tela);
-//            tela.retangulo(car.x,car.y,car.larg,Carro.alt,new Cor("branco")); //teste hitbox
-        }
-//        tela.retangulo(sapo.hb.x0,sapo.hb.y0,(int)(sapo.hb.x1-sapo.hb.x0),
-//                (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
-        if(gameOver){
-            tela.texto("GAME OVER",200,300,70,new Cor("branco"));
-        }
+        tela.retangulo(sapo.hb.x0,sapo.hb.y0,(int)(sapo.hb.x1-sapo.hb.x0),
+                (int)(sapo.hb.y1-sapo.hb.y0),new Cor("branco")); //teste hitbox
     }
 	
 	public void tecla(String tecla){
@@ -100,9 +100,14 @@ public class Jogo {
         if(tecla.equals("p")){
             pause = !pause;
         }
-//        if(tecla.equals("space")){
-//            gameOver = !gameOver;
-//        }
+        System.out.println(tecla);
+        if(gameOver){
+            if(tecla.equals("space") || tecla.equals("espaço")){
+                gameOver = !gameOver;
+                vidas = 5;
+                score = 0;
+            }
+        }
     }
 	
     public static void main(String[] args) {
