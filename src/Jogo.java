@@ -97,7 +97,7 @@ public class Jogo {
         if(!pause){
             sapo.defDirecao(tecla);
         }
-       // System.out.println(tecla);
+        System.out.println(tecla);
         if(gameOver){
             if(tecla.equals("space") || tecla.equals("espaço")){
                 gameOver = !gameOver;
